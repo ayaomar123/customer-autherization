@@ -1,10 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +29,13 @@ Route::group(['prefix' => 'customers','middleware' => 'auth'], function(){
 });
 
 Auth::routes();
-
 Route::get('/home', 'CustomerController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
 Route::resource('roles', 'RoleController');
+
+
+
+Route::get('locale/{locale?}', array('as'=>'set-locale',
+    'uses'=>'LanguageController@setLocale'));
+
+
